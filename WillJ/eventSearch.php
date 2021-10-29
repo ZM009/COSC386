@@ -6,6 +6,7 @@
 
 <body>
 
+<button style="text-align:left;" type="button" onclick="window.location.href='https://lamp.salisbury.edu/~wjenkins2/homeSite.php';"> Home </button>
 
 <?php
 $org = $_POST["eventOrg"];
