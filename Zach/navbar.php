@@ -50,7 +50,7 @@
         <a href="https://lamp.salisbury.edu/~zmoore4/index.php">Login</a>
         <a href="https://lamp.salisbury.edu/~zmoore4/reg.php">Register</a>
         <a href="https://lamp.salisbury.edu/~zmoore4/contact.php">Contact</a>
-        <a style="float:right" href="#admin">Admin</a>
+        <a style="float:right" href="https://lamp.salisbury.edu/~bbogaczyk1/new.php">Admin</a>
         <a href="#about">About</a>
      </ul>
    </div>
