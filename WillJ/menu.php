@@ -24,6 +24,11 @@
 
 
 <body>
+
+<h1> SALISBURY UNIVERSITY GREEK LIFE </h1>
+<img  src ="https://cosida.com/common/controls/image_handler.aspx?thumb_id=0&image_path=/images/2019/2/21/SalisburyLogo.png" alt = "Salisbury University Sammy the Seagull" style="width:200px;height:200px;">
+
+
 <div class= "menu">
 <?php
 echo '<a href="https://lamp.salisbury.edu/~wjenkins2/home.php">Home</a> -
@@ -35,3 +40,4 @@ echo '<a href="https://lamp.salisbury.edu/~wjenkins2/home.php">Home</a> -
 </div>
 </body>
 </html>
+
