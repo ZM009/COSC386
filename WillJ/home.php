@@ -3,75 +3,12 @@
 
 <head>
 <title> Greek Life Database </title>
-<style>
-        body{
-        background-color: maroon;
-        color:  #d4af37;
-        }
-
-        h1{
-                text-align: center;
-        }
-
-        aside{
-                background-color: green;
-        }
-
-        ul{
-                font-weight: 900;
-        }
-
-        ul li{
-                color: white;
-                font-weight: 700;
-        }
-
-        .container{
-                display: inline-block;
-        }
-
-        .center{        
-        display: inline;
-        text-align:center;
-        margin:auto;
-        
-        }
-
-        .boxText{
-        color: black;
-        text-align:center;
-        background-color: #ffcc66;
-        width: 600px;
-        border: 10px solid #d4af37;
-        padding: 40px;
-        margin-top:60px;
-        margin-right: auto;
-        margin-left:auto;
-        }
-        .pSubBox{
-                text-align:left;
-
-                }
-
-        img {
-   display: block;
-  margin-left: auto;
-  margin-right: auto;
-        }
-
-        .formSide{
-                padding-top:20px;
-                padding-left:42%;
-        }
-
-</style>
 </head>
 
 <body>
-
-<h1> SALISBURY UNIVERSITY GREEK LIFE </h1>
+<!---<h1> SALISBURY UNIVERSITY GREEK LIFE </h1>
 <img  src ="https://cosida.com/common/controls/image_handler.aspx?thumb_id=0&image_path=/images/2019/2/21/SalisburyLogo.png" alt = "Salisbury University Sammy the Seagull" style="width:200px;height:200px;">
-
+--!>
 <div style="text-align:center;">
 <?php include 'menu.php';
 $a = 0;
@@ -80,7 +17,6 @@ $s =0;
 ?>
 <br>
 </div>
-
 <div class="boxText">
 <h3> Description of Website </h3>
 <div class="pSubBox">
@@ -90,12 +26,12 @@ $s =0;
 </div>
 
 <div class="formSide">
-        <form  action="COSC386/WillJ/eventSearch.php" method="post">
+        <form  action="https://lamp.salisbury.edu/~adepace1/studentSearch.php" method="post">
         <input type="text" name = "orgStudent" placeHolder="Enter an Organization Name">
         <input type ="submit" value="Search">
         </form>
 
-        <form action="COSC386/WillJ/eventSearch.php" method="post">
+        <form action="https://lamp.salisbury.edu/~adepace1/eventSearch.php" method="post">
         <input type = "text" name="eventOrg" placeholder = "Enter an Organization Name">
         <input type="submit" value="Search">
         </form>
@@ -151,7 +87,7 @@ if($s==0){
                         echo "<td style='color:white;'>" . $row['type'] . "</td>";
 
                         echo "</tr>";
-                                                                   }
+                        }
         echo "</table>";
 }
 ?>
