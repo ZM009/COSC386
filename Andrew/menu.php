@@ -70,7 +70,7 @@
         }
 
         a:visited{
-                color:purple;
+                color:#F1C40F;
         }
 
         .menu{
