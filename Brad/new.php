@@ -14,6 +14,7 @@
     h1{ color: yellow;}
     h2{ color: yellow;}
     td{ color: white;}
+    a{color: yellow;}
  </style>
 <body>
 
