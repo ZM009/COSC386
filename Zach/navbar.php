@@ -7,14 +7,15 @@
            margin: 0px;
         }
         ul {
-           list-style-type: none;  /* kept in case <li> is ever used for navbar; learned from w3schools */
+           list-style-type: none;
            margin: 0px;
            padding: 0px;
+           font-weight: 900;
         }
         /* styles the navigation bar itself */
         .topnav {
-           position: -webkit-sticky; /* -webkit prefix is req'd by Safari/MacOS (learned prefix from w3schools) */
-           position: sticky;   /* allows navbar to stick to the top of the page, even when user is scrolling */
+           position: -webkit-sticky; /* Safari */
+           position: sticky;
            top: 0;
            background-color: black;
            overflow: hidden;
@@ -52,16 +53,15 @@
         <a href="https://lamp.salisbury.edu/~zmoore4/reg.php">Register</a>
         <a href="https://lamp.salisbury.edu/~zmoore4/contact.php">Contact</a>
         <a style="float:right" href="https://lamp.salisbury.edu/~zmoore4/logout.php">Logout</a>
-        <a style="float:right" href="https://lamp.salisbury.edu/~bbogaczyk1/new.php">Admin</a>
-        <a href="#about">About</a>
+        <a style="float:right" href="https://lamp.salisbury.edu/~zmoore4/admin.php">Admin</a>
+        <a href="https://lamp.salisbury.edu/~adepace1/about.php">About</a>
      </ul>
    </div>
    <script>
-      // script below is used for removing the active class and reassigning it to the current link clicked on
-      $('ul a').click(function() {
-         $('ul a').removeClass('active');
-         $(this).addClass('active');
-      });
+        $('ul a').click(function() {
+        $('ul a').removeClass('active');
+        $(this).addClass('active');
+        });
    </script>
 </body>
 </html>
