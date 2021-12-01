@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['REQUEST_METHOD'] = 'POST';
+$method = getenv('REQUEST_METHOD');
 // Include config file for the connection to the Greek Life DB
 require_once 'config.php';
 // require the navbar file to include navigation bar on registration page
@@ -12,7 +12,7 @@ $username_err = $password_err = $confirm_password_err = "";
 
 // Process form data when form is submitted
 //$reqmethod = isset($_SERVER["REQUEST_METHOD"]) ? $_SERVER["REQUEST_METHOD"] : null;
-if($_SESSION["REQUEST_METHOD"] == "POST") {
+if($method == "POST") {
 	
 	// Validate usr
 	if(empty(trim($_POST['username']))) {
@@ -39,7 +39,7 @@ if($_SESSION["REQUEST_METHOD"] == "POST") {
 					$username = trim($_POST["username"]);
 				}
 			} else {
-				echo "A problem has occurred processing your request. Try again later";
+				echo "A problem has occurred processing your request. Go Suck a PHAT one";
 			}
 			// close the statement
 			mysqli_stmt_close($stmt);
@@ -70,23 +70,23 @@ if($_SESSION["REQUEST_METHOD"] == "POST") {
 		// prepare insert query
 		$query = "insert into Users (username, password) values (?, ?)";
 
-		if($stmt = mysqli_prepare($connection, $query)) {
+		if($stmt2 = mysqli_prepare($connection, $query)) {
 			//bind the variables to statement as params
-			mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+			mysqli_stmt_bind_param($stmt2, "ss", $param_username, $param_password);
 			// set username and password params
-			$param_username = $username;
+			$param_username = trim($_POST["username"]);
 			// creates a password hash
 			$param_password = password_hash($password, PASSWORD_DEFAULT);
 
 			// attempts to execute the statement
-			if(mysqli_stmt_execute($stmt)) {
+			if(mysqli_stmt_execute($stmt2)) {
 				// redirect to login page
 				header("location: index.php");
 			} else {
 				echo "A problem has occurred processing your request. Try again later";
 			}
 			// close the statement
-			mysqli_stmt_close($stmt);
+			mysqli_stmt_close($stmt2);
 		}
 	}
 	// close the connection
@@ -101,7 +101,12 @@ if($_SESSION["REQUEST_METHOD"] == "POST") {
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-	body{ font: 14px sans-serif; }
+	body{
+	  background-color: maroon;
+	  color: #d4af37;
+	}
+	a { color: white; }
+	.invalid-feedback { color: white; }
 	.wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
@@ -109,7 +114,8 @@ if($_SESSION["REQUEST_METHOD"] == "POST") {
     <div class="wrapper">
 	<h2>Sign Up</h2>
 	<p>Please fill out the form to create an SU Pantheon account.</p>
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+	<!--<form method="post" action="">-->
+	<form method="post" action="reg.php">
 	    <div class="form-group">
 		<label>Username</label>
 		<input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" placeholder="Username">
@@ -127,7 +133,7 @@ if($_SESSION["REQUEST_METHOD"] == "POST") {
 	    </div>
 	    <div class="form-group">
 		<input type="submit" class="btn btn-primary" value="Submit">
-		<input type="reset" class="btn btn-secondary ml-2" value="Reset">
+		<input type="reset"  class="btn btn-secondary ml2" value="Reset">
 	    </div>
 	    <p>Already have an account? <a href="index.php">Login here</a>.</p>
 	</form>

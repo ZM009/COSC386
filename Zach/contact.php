@@ -56,7 +56,7 @@ include 'navbar.php';
 	border-radius: 5px;
 	border: 0;
 	cursor: pointer;
-	color: white;
+	color: maroon;
 	font-size: 24px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -72,7 +72,7 @@ include 'navbar.php';
 	border-radius: 5px;
 	border: 0;
 	cursor: pointer;  /* this indicates a link (grabbed form devloper.mozilla.org) */
-	color: white;
+	color: maroon;
 	font-size: 24px;
 	padding-top: 10px;
 	padding-bottom: 10px;   /* gives 10px of space between the content and border of the element */
