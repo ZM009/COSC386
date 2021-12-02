@@ -87,6 +87,13 @@ include 'navbar.php';
 </style>
 </head>
 <body>
+  <script type="text/javascript">
+    window.onload = function() {	
+	document.getElementById("contact").className += "active";
+	document.getElementById("home").className = document.getElementById("home").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+	document.getElementById("admin").className = document.getElementById("active").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+    }
+  </script>
   <h1>Contact Us</h1>
   <form method="get">
     <input name="fname" type="text" class="f-input" placeholder="First Name" />

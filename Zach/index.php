@@ -64,22 +64,9 @@
    </head>
    <body>
 	   <script>
-	   $(function() {
-		var path = window.location.pathname;
-		path = path.replace(/\/$/, "");
-		path = decodeURIComponent(path);
-		
-		$(".topnav ul a").each(function() {
-			var href = $(this).attr('href');
-			if(path.substring((path.lastIndexOf('/') + 1), path.length) === href) {
-				$(this).closest('ul').addClass('active');
-			} else {
-				$(this).closest('ul').removeClass();
-			}
-		});
-	   });
+		$(this).closest('ul').addClass('active');
+		$(this).closest('ul').removeClass();
 	   </script>
-
 	   <h1>Sign In</h1>
 	   <form method="post" action="index.php">
 	   <fieldset><legend>User Information</legend>
