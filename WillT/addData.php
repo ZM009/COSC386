@@ -332,7 +332,7 @@
 </body>
 <footer>
         <div class="boxText">
-                Use this to add different data into the data base. Note: if something fails to insert it is one of three things. The data already exists, the data is in the wrong format, or that at least one attribute of
+                Use this to add different data into the database. Note: if something fails to insert it is one of three things. The data already exists, the data is in the wrong format, or that at least one attribute of
                 the data needs to already exist in the database.
         </div>
         <br><br>
