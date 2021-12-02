@@ -8,6 +8,10 @@ include 'navbar.php';
 <meta charset="utf-8">
 <style>
  /* color of the page to match other pages in site */
+  h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+  }
   body {
 	background-color: maroon;
 	color: #d4af37;
