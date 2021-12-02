@@ -4,7 +4,6 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-   <script type"text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <style>
 	body {
 	   margin: 0px;
@@ -64,12 +63,6 @@ session_start();
 	<a href="https://lamp.salisbury.edu/~adepace1/about.php">About</a>
      </ul>
    </div>
-   <script>
-	$('ul a').click(function() {
-	$('ul a').removeClass('active');
-	$(this).addClass('active');
-	});
-   </script>
 </body>
 </html>
 
