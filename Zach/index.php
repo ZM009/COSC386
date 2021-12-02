@@ -69,7 +69,7 @@
 		path = path.replace(/\/$/, "");
 		path = decodeURIComponent(path);
 		
-		$("ul a").each(function() {
+		$(".topnav ul a").each(function() {
 			var href = $(this).attr('href');
 			if(path.substring((path.lastIndexOf('/') + 1), path.length) === href) {
 				$(this).closest('ul').addClass('active');

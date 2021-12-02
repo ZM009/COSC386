@@ -51,12 +51,12 @@ session_start();
    <div class="topnav">
      <ul>
 	<a class="active" href="https://lamp.salisbury.edu/~wjenkins2/home.php">Home</a>
-	<a href="https://lamp.salisbury.edu/~zmoore4/COSC386/index.php">Login</a>
-	<a href="https://lamp.salisbury.edu/~zmoore4/COSC386/reg.php">Register</a>
-	<a href="https://lamp.salisbury.edu/~zmoore4/COSC386/contact.php">Contact</a>
+	<a href="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/index.php">Login</a>
+	<a href="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/reg.php">Register</a>
+	<a href="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/contact.php">Contact</a>
 	<?php if(isset($_SESSION['username'])) { ?>
-	<a style="float:right" href="https://lamp.salisbury.edu/~zmoore4/COSC386/logout.php">Logout</a>
-	<a style="float:right" href="https://lamp.salisbury.edu/~zmoore4/COSC386/admin.php">Admin</a>
+	<a style="float:right" href="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/logout.php">Logout</a>
+	<a style="float:right" href="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/admin.php">Admin</a>
 	<?php } else { ?>
 	<a style="float:right" href="#">Admin</a>
 	<?php } ?>
