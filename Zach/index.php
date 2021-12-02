@@ -63,10 +63,14 @@
    </style>
    </head>
    <body>
-	   <script>
-		$(this).closest('ul').addClass('active');
-		$(this).closest('ul').removeClass();
-	   </script>
+  	   <script type="text/javascript">
+    		window.onload = function() {	
+		   document.getElementById("admin").className += "active";
+		   document.getElementById("home").className = document.getElementById("home").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		   document.getElementById("contact").className = document.getElementById("active").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		   document.getElementById("about").className = document.getElementById("about").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+    		}
+  	   </script>
 	   <h1>Sign In</h1>
 	   <form method="post" action="index.php">
 	   <fieldset><legend>User Information</legend>

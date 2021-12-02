@@ -96,6 +96,7 @@ include 'navbar.php';
 	document.getElementById("contact").className += "active";
 	document.getElementById("home").className = document.getElementById("home").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
 	document.getElementById("admin").className = document.getElementById("active").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+	document.getElementById("about").className = document.getElementById("about").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
     }
   </script>
   <h1>Contact Us</h1>

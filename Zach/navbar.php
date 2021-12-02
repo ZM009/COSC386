@@ -60,7 +60,7 @@ session_start();
 	<?php } else { ?>
 	<a id="admin" style="float:right" href="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/index.php">Admin</a>
 	<?php } ?>
-	<a href="https://lamp.salisbury.edu/~adepace1/about.php">About</a>
+	<a id="about" href="https://lamp.salisbury.edu/~adepace1/about.php">About</a>
      </ul>
    </div>
 </body>

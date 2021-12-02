@@ -20,6 +20,7 @@ require_once 'navbar.php';
 		document.getElementById("admin").className += "active";
 		document.getElementById("home").className = document.getElementById("home").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
 		document.getElementById("contact").className = document.getElementById("contact").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		document.getElementById("about").className = document.getElementById("about").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
 	}
    </script>
    <h1>Admin Center</h1>
