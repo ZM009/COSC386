@@ -8,25 +8,28 @@
 
    // checks if data was posted to form
    if($method == 'POST') {
-	$username = mysqli_real_escape_string($connection, $_POST['username']);
+	$email = mysqli_real_escape_string($connection, $_POST['email']);
 	$password = mysqli_real_escape_string($connection, $_POST['password']);
+	$hashed_passwd = password_hash($password, PASSWORD_DEFAULT); 
 
-	if(!empty($username) && !empty($password)) {
+	if(!empty($email) && !empty($password)) {
 		// read from db to compare the login credentials
-		$query = "select * from Users where username = '$username' limit 1";
+		$query = "select * from Users where email = '$email' limit 1";
 		$r = mysqli_query($connection, $query);
 
 		if($r) {
-		   if($r && mysqli_num_rows($r) > 0) {
+		   if(password_verify($password, $hashed_passwd)) {
+		 /*  if($r && mysqli_num_rows($r) > 0) { */
 			$dat = mysqli_fetch_assoc($r);
-			if($dat['password'] === $password) {
+		/*	if($dat['password'] === $password) {  */
 				$_SESSION['status'] = $dat['status'];
-				$_SESSION['username'] = $dat['username'];
+				$_SESSION['email'] = $dat['email'];
 				$_SESSION['password'] = $dat['password'];
 				header("Location: https://lamp.salisbury.edu/~wjenkins2/home.php");
 				//die;
-			}
+		//	}
 		   }
+
 		}
 		echo "Please enter a valid username or password";
 	}
@@ -74,12 +77,13 @@
 	   <h1>Sign In</h1>
 	   <form method="post" action="index.php">
 	   <fieldset><legend>User Information</legend>
-	       <label>Username
-	       <input type="text" name="username" required="required" placeholder="Username"/></label><br><br>
+	       <label>Email
+	       <input type="text" name="email" required="required" placeholder="Email"/></label><br><br>
 	       <label>Password: 
 	       <input type="password" name="password" required="required" placeholder="Password"/></label><br><br>
 	   </fieldset>
 	       <input type="submit" value="Login"/>
+	       <p>Make a new account? <a href="reg.php">Register here</a>.</p>
 	   </form>
    </body>
 </html>
