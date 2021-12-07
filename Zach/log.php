@@ -21,7 +21,8 @@
 			$_SESSION['status'] = $dat['status'];
 			$_SESSION['email'] = $dat['email'];
 			$_SESSION['password'] = $dat['password'];
-			header('Location: https://lamp.salisbury.edu/~wjenkins2/home.php');
+			$_SESSION['orgName'] = $dat['orgName'];
+			header("Location: https://lamp.salisbury.edu/~wjenkins2/home.php");
 		   }
 		}
 		echo "Please enter a valid email or password";
@@ -122,17 +123,17 @@
    </style>
 </head>
 <body>
-  <form method="post" action="log.php" id="main">
+  <form method="post" action="" id="main">
     <h2>Login to your account</h2>
 
     <div class="input-parent">
       <label for="username">Username or Email</label>
-      <input type="text" id="username" placeholder="Email" required>
+      <input type="text" name="email" id="username" placeholder="Email" required = "required">
     </div>
 
     <div class="input-parent">
       <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" name="password" id="password" placeholder="Password" required>
     </div>
 
     <button type="submit">Login</button>
