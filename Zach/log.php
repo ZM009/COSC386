@@ -18,14 +18,17 @@
 		if($r) {
 		   if(password_verify($password, $hashed_passwd)) {
 			$dat = mysqli_fetch_assoc($r);
-			$_SESSION['status'] = $dat['status'];
-			$_SESSION['email'] = $dat['email'];
-			$_SESSION['password'] = $dat['password'];
-			$_SESSION['orgName'] = $dat['orgName'];
-			header("Location: https://lamp.salisbury.edu/~wjenkins2/home.php");
+			if(count($dat) != 0) {
+				$_SESSION['status'] = $dat['status'];
+				$_SESSION['email'] = $dat['email'];
+				$_SESSION['password'] = $dat['password'];
+				$_SESSION['orgName'] = $dat['orgName'];
+				header("Location: https://lamp.salisbury.edu/~wjenkins2/home.php");
+			} else {
+				echo '<script>alert("Invalid Credentials!")</script>';
+			}
 		   }
 		}
-		echo "Please enter a valid email or password";
 	}
    }
 ?>
@@ -85,13 +88,13 @@
     	font-size: 16px;
     	background: #c7c7c7;
     	border: none;
-    	color: #c7c7c7;
+    	color: black;
     	border-radius: 4px;
     	outline: none;
     	transition: all 0.2s ease;
    }
    .input-parent input:hover {
-   	background: #404040;
+   	background: #808080;
    }
    .input-parent input:focus {
     	box-shadow: 0px 0px 0px 1px #0087ff;
@@ -99,7 +102,7 @@
    button {
     	padding: 10px 18px;
     	font-size: 15px;
-    	background: #1a3969;
+    	background: maroon;
     	width: 100%;
     	border: none;
     	border-radius: 4px;
@@ -120,6 +123,41 @@
 	margin-left: auto;
 	margin-right: auto;
    }
+   .tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted block;
+   }
+
+   .tooltip .tooltiptext {
+	visibility: hidden;
+	width: 250px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	top: -5px;
+	left: 110%;
+   }
+
+   .tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent black transparent transparent;
+   }
+
+   .tooltip:hover .tooltiptext {
+	visibility: visible;
+   }
+
    </style>
 </head>
 <body>
@@ -128,12 +166,18 @@
 
     <div class="input-parent">
       <label for="username">Username or Email</label>
-      <input type="text" name="email" id="username" placeholder="Email" required = "required">
+      <div class="tooltip">
+         <input type="text" name="email" id="username" placeholder="Email" required = "required">
+         <span class="tooltiptext">Emails can be from 0-60 characters in length and must end with @''.com</span>
+      </div>
     </div>
 
     <div class="input-parent">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" placeholder="Password" required>
+      <div class="tooltip">
+         <input type="password" name="password" id="password" placeholder="Password" required>
+	 <span class="tooltiptext">Passwords must be at least 6 characters long, and cannot contain special characters other than "_".</span>
+      </div>
     </div>
 
     <button type="submit">Login</button>
