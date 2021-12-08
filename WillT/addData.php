@@ -2,9 +2,9 @@
 <head>
         <link rel="stylesheet" href="add.css" type="text/css" />
         <title>AddData</title>
-        <?php include 'select.php'?>
 </head>
 <body>
+        <?php include 'select.php'?>
         <br><br>
         <?php if($_GET['addition']==1):?>
         <div>
