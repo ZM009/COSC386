@@ -1,5 +1,6 @@
 <html>
 <head>
+        <?php require_once 'navbar.php'?>
         <link rel="stylesheet" href="add.css" type="text/css" />
         <title>Select Data</title>
         <style>
