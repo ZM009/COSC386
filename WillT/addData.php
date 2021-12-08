@@ -101,7 +101,7 @@
         <?php if($_GET['addition']==3):?>
         <div>
                 <br><br>
-                <sub>Add Admin</sub>
+                <sub>Add Advisor</sub>
                 <form action=" " method="post">
                         <br><br>
                         Advisor ID: <input type="number" id="id" name="id" min="0" max="99999999999"><br><br>
