@@ -5,6 +5,7 @@
 </head>
 <body>
         <?php include 'select.php'?>
+        <?php include 'navbar.php'?>
         <br><br>
         <?php if($_GET['addition']==1):?>
         <div>
