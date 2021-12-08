@@ -79,11 +79,11 @@ require_once 'navbar.php';
 	<input type="submit" value="Add Data" name="Submit"/>
    </form>
 
-   <form action="https://lamp.salisbury.edu/~zmoore4/COSC386/Brad/new.php" method="get">
+   <form action="https://lamp.salisbury.edu/~wjenkins2/delete.php" method="get">
 	<input type="submit" value="Delete Data" name="Submit" />
    </form>
 
-   <form action="#" method="get">
+   <form action="https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php" method="get">
 	<input type="submit" value="Update Data" name="Submit"/>
    </form>
 
