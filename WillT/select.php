@@ -39,7 +39,7 @@
         <form action="addData.php" method="get">
         <button style="text-align:left;" value='1' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Event </button>
         <button style="text-align:left;" value='2' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Organization </button>
-        <button style="text-align:left;" value='3' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Admin </button>
+        <button style="text-align:left;" value='3' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Advisor </button>
         <button style="text-align:left;" value='4' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Philanthropy </button>
         <button style="text-align:left;" value='5' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Corporation </button>
         <button style="text-align:left;" value='6' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Council </button>
