@@ -37,6 +37,7 @@
 </head>
 <body>
         <form action="addData.php" method="get">
+        <button style="textalign:left; background-color: black; color: white;" onclick="window.location.href=https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/admin.php">
         <button style="text-align:left;" value='1' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Event </button>
         <button style="text-align:left;" value='2' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Organization </button>
         <button style="text-align:left;" value='3' name='addition' type="submit" onclick="window.location.href='https://lamp.salisbury.edu/~wtownsend2/COSC386/WillT/addData.php';"> Add Admin </button>
