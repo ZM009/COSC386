@@ -39,6 +39,14 @@
    </style>
 </head>
 <body>
+   <script type="text/javascript">
+	window.onload = function() {
+		document.getElementById("admin").className += "active";
+		document.getElementById("home").className = document.getElementById("home").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		document.getElementById("contact").className = document.getElementById("contact").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		document.getElementById("about").className = document.getElementById("about").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+	}
+   </script>
    <h1 style="text-align: center;">Edit Page</h1> 
    <div class="center">
       <p>Select what you want to update from the dropdown below</p>

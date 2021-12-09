@@ -92,7 +92,15 @@
 	}
    </style>
 </head>
-<body>
+<body> 
+   <script type="text/javascript">
+	window.onload = function() {
+		document.getElementById("admin").className += "active";
+		document.getElementById("home").className = document.getElementById("home").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		document.getElementById("contact").className = document.getElementById("contact").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+		document.getElementById("about").className = document.getElementById("about").className.replace( /(?:^|\s)active(?!\S)/g , ' ' )
+	}
+   </script>
 <?php
    $table = $_POST['tableName'];
 ?>
