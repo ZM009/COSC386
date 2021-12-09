@@ -30,6 +30,12 @@
       <select name="tableName" id="table">
 	<option value="Students">Students</option>
 	<option value="Events">Events</option>
+	<option value="Organizations">Organizations</option>
+	<option value="Advisors">Advisors</option>
+	<option value="PNMs">PNMs</option>
+	<option value="Philanthropy">Philanthropy</option>
+	<option value="Councils">Councils</option>
+	<option value="Corporation">Corporation</option>
       </select>
       <br><br>
       <input type="submit" value="Submit">
