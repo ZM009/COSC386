@@ -1,6 +1,7 @@
 <?php 
    require_once 'config.php';
    include 'navbar.php';
+   include 'menu.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,23 +9,40 @@
 <head>
    <title>Edit Page</title>
    <style>
-	body {
-		background-color: maroon;
-		color: #d4af37;
+	select {
+		outline: none;
+		border-radius: 8px;
 	}
 	
-	img {
-	   display: block;
-	   margin-left: auto;
-	   margin-right: auto;
+	.center {
+		text-align: center;
+	}
+
+	form {
+		float: left;
+		margin-left: 39%;
+	}
+	
+	[type=submit] {
+		transition-duration: 0.4s;
+		background-color: #d4af37;
+		color: white;
+		float: right;
+		margin-left: 10px;
+		padding: 4px 20px;
+	}
+
+	[type=submit]:hover {
+		background-color: #4caf50;
+		color: white;
 	}
    </style>
 </head>
 <body>
    <h1 style="text-align: center;">Edit Page</h1> 
-   <img src="https://cosida.com/common/controls/image_handler.aspx?thumb_id=0&image_path=/images/2019/2/21/SalisburyLogo.png" alt="Salisbury University Sammy the Sea Gull" style="width: 200px; height: 200px;">
-   
-   <p>Select what you want to update</p>
+   <div class="center">
+      <p>Select what you want to update from the dropdown below</p>
+   </div>
    <form action="update.php" method="post">
       <label for="table">Select a value to update:</label>
       <select name="tableName" id="table">
@@ -37,7 +55,6 @@
 	<option value="Councils">Councils</option>
 	<option value="Corporation">Corporation</option>
       </select>
-      <br><br>
       <input type="submit" value="Submit">
    </form>
 </body>

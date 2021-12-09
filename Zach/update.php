@@ -1,11 +1,91 @@
 <?php
    require_once 'config.php';
    include 'navbar.php';
+   include 'menu.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
    <style>
+	select {
+		outline: none;
+		border-radius: 8px;
+	}
+
+	.p2 {
+		font-size: 20px;
+	}
+
+	[type=submit] {
+		transition-duration: 0.4s;
+		background-color: #d4af37;
+		border: 3px solid #d4af37;
+		border-radius: 5px;
+		color: black;
+		padding: 4px 20px;
+	}
+
+	[type=submit]:hover {
+		background-color: #4caf50;
+		color: white;
+	}
+
+	[type=text] {
+		border: 2px solid black;
+	}
+
+	p {
+		text-align: center;
+		font-size: 24px;
+	}
+
+	form {
+		margin-top: 15px;
+		text-align: center;
+		margin-left: 10px;
+	}
+
+	table {
+		color: white;
+		text-align: center;
+		margin-right: 40%;
+	}
+
+	button {
+		float: none;
+		margin-left: 47%;
+	}
+
+	.group {
+		border: 1px solid black;
+	}
+
+	.butt {
+		float: left;
+		margin-left: 47%;	
+		-webkit-appearance: button;
+		-moz-appearance: button;
+		appearance: button;
+		text-decoration: none;
+		color: black;
+	}
+	
+	table {
+		padding: 10px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	th {
+		background-color: #d4af37;
+		border: 1px solid #d4af37;
+		border-radius: 10px;
+	}
+	
+	tr:hover {
+		background-color: black;
+	}
+	
 	body {
 	   background-color: maroon;
 	   color: #d4af37;
@@ -15,9 +95,35 @@
 <body>
 <?php
    $table = $_POST['tableName'];
-   
+?>
+
+<h1>Updating <br> <?php echo $table ?> </h1>
+
+<?php
    if(strcmp($table, "Students") == 0) {
-	echo "You have chosen to update a Student";
+	 echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+        echo "<p>All current Students</p>";
+        $query = "select name, id, orgName, volunteer_hrs, email from Students";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> Name </th>";
+	echo "<th> ID </th>";
+	echo "<th> Organization </th>";
+	echo "<th> Volunteering </th>";
+	echo "<th> Email </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+		echo "<td> " . $row['id'] . "</td>";
+		echo "<td> " . $row['orgName'] . "</td>";
+		echo "<td> " . $row['volunteer_hrs']. "</td>";
+		echo "<td> " . $row['email'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
 ?> 
   <form method="post">
 	<label for="table">Select an individual value to change:</label>
@@ -28,13 +134,32 @@
 	   <option name="update" value="stuEmail">Email</option>
 	   <option name="update" value="stuOrg">Organization Name</option>
 	</select>
-	<br><br>
 	<input type="submit" value="Submit"/>
    </form>
 
 <?php
    } else if(strcmp($table, "Events") == 0) {
-	echo "You have chosen to update an Event";
+	echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+        echo "<p>All current Events</p> <br> ";
+        $query = "select * from Events";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> Event Name </th>";
+        echo "<th> Date </th>";
+        echo "<th> Time </th>";
+        echo "<th> Location </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+                echo "<td> " . $row['date'] . "</td>";
+                echo "<td> " . $row['time'] . "</td>";
+                echo "<td> " . $row['location'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
 ?>
    <form method="post">
 	<label for=table">Select an individual value to change:</label>
@@ -44,18 +169,49 @@
 	   <option value="eventLoc">Event Location</option>
 	   <option value="eventTime">Event Time</option>
 	</select>
-	<br><br>
 	<input type="submit" value="Submit"/>
    </form>
 <?php
-   } else if(strcmp($table, "Organizations") == 0) { ?>
+   } else if(strcmp($table, "Organizations") == 0) {
+	echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+	echo "<p>All current Organizations</p> <br> ";
+        $query = "select name, colors, type, quota, dues, motto, advEmail, philName, councilName from Organizations";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> Organization Name </th>";
+        echo "<th> Colors </th>";
+        echo "<th> Type </th>";
+        echo "<th> Quota </th>";
+	echo "<th> Dues </th>";
+	echo "<th> Motto </th>";
+	echo "<th> Advisor Email </th>";
+	echo "<th> Philanthropy </th>";
+	echo "<th> Council </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+		echo "<td> " . $row['colors']. "</td>";
+                echo "<td> " . $row['type'] . "</td>";
+		echo "<td> " . $row['quota'] . "</td>";
+		echo "<td> " . $row['dues'] . "</td>";
+		echo "<td> " . $row['motto']. "</td>";
+                echo "<td> " . $row['advEmail'] . "</td>";
+		echo "<td> " . $row['philName'] . "</td>";
+                echo "<td> " . $row['councilName'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
+ ?>
    <form method="post">
         <label for=table">Select an individual value to change:</label>
         <select name="orgs" id="table">
 	   <option value="orgName">Name</option>
-	   <option value="colors">Event Date</option>
-	   <option value="type">Event Location</option>
-	   <option value="quota">Event Time</option>
+	   <option value="colors">Colors</option>
+	   <option value="type">Type of Organization</option>
+	   <option value="quota">Volunteer Quota</option>
 	   <option value="dues">Dues</option>
 	   <option value="members">Num Members</option>
 	   <option value="motto">Motto</option>
@@ -66,7 +222,29 @@
        <br><br>
        <input type="submit" value="Submit"/>
    </form>
-<?php } else if(strcmp($table, "Advisors") == 0) { ?>
+<?php } else if(strcmp($table, "Advisors") == 0) {
+ 	echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+        echo "<p>All current Advisors</p> <br> ";
+        $query = "select * from Advisor";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> Advisor Name </th>";
+        echo "<th> Advisor ID </th>";
+        echo "<th> Department </th>";
+        echo "<th> Advisor Email </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+                echo "<td> " . $row['id'] . "</td>";
+                echo "<td> " . $row['dept'] . "</td>";
+                echo "<td> " . $row['email'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
+?>
  
    <form method="post">
         <label for=table">Select an individual value to change:</label>
@@ -79,7 +257,25 @@
        <br><br>
        <input type="submit" value="Submit"/>
    </form>
-<?php } else if(strcmp($table, "PNMs") == 0) { ?>
+<?php } else if(strcmp($table, "PNMs") == 0) { 
+	echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+	echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+        echo "<p>All current Potential New Members</p> <br> ";
+        $query = "select * from PNMs";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> PNM ID </th>";
+        echo "<th> PNM Name </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['id'] . "</td>";
+                echo "<td> " . $row['name'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
+?>
 
    <form method="post">
         <label for=table">Select an individual value to change:</label>
@@ -91,7 +287,26 @@
        <input type="submit" value="Submit"/>
    </form>
 
-<?php } else if(strcmp($table, "Philanthropy") == 0) { ?>
+<?php } else if(strcmp($table, "Philanthropy") == 0) { 
+	echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+
+        echo "<p>All current Philanthropies</p> <br> ";
+        $query = "select * from Philanthropy";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+echo "<th> Philanthropy Name </th>";
+        echo "<th> Amount Donated </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+                echo "<td> " . $row['donations'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
+?>
    <form method="post">
 	<label for="table">Select an individual value to change:</label>
 	<select name="phils" id="table">
@@ -101,13 +316,50 @@
 	<br><br>
 	<input type="submit" value="Submit"/>
    </form>
-<?php } else if(strcmp($table, "Councils") == 0) { ?>
+<?php } else if(strcmp($table, "Councils") == 0) { 
+	echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+
+        echo "<p>All current Councils</p> <br> ";
+        $query = "select * from Councils";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> Council Name </th>";
+        echo "<th> Number of Organizations </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+                echo "<td> " . $row['num_orgs'] . "</td>";
+                echo "</tr>";
+        }
+        echo "</table>";
+
+?>
    <form method="post">
 	Council: <input type="text" name="cName">
 	New Council Name: <input type="text" name="newCouncilName">
 	<input type="submit" value="Submit"/>
    </form>
-<?php } else if(strcmp($table, "Corporation") == 0) { ?>
+<?php } else if(strcmp($table, "Corporation") == 0) { 
+echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        echo "<input type = 'submit' value = 'Go Back' />";
+        echo "</form>";
+
+        echo "<p>All current Corporations</p> <br> ";
+        $query = "select * from Corporation";
+        $r = mysqli_query($connection, $query);
+        echo "<table>";
+        echo "<th> Corporation Name </th>";
+        echo "<th> Corporation Type </th>";
+        while ($row = mysqli_fetch_array($r)){
+                echo "<tr>";
+                echo "<td> " . $row['name'] . "</td>";
+                echo "<td> " . $row['service_type'] . "</td>";
+                echo "</tr>";
+  }
+        echo "</table>";
+?>
    <form method="post">
 	<label for="table">Select an individual value to change:</label>
 	<select name="corps" id="table">
@@ -136,8 +388,9 @@
    </form>
 
    <form method="post">
-	Student Name: <input type="text" name="sName">
-	New Name: <input type="text" name="newName">
+	<p class="p2"> Student Name: </p> <input type="text" name="sName">
+	<p class="p2"> New Name:  </p><input type="text" name="newName">
+	<br><br>
 	<input type="submit" value="Submit">
    </form>
 <?php } else if(strcmp($_POST['stuTable'], "stuId") == 0) {
@@ -668,17 +921,23 @@
    if(isset($_POST['sName'])) {
 	$name = $_POST["sName"];
 	$new = $_POST["newName"];
-	echo "<script>alert('$name')</script>";
 	$query = "select * from Students where name = '$name' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Student Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        		echo "<input type = 'submit' value = 'Go Back' />";
+       	 		echo "</form>";
+
 			$query = "update Students set name = '$new' where name = '$name' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Student does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+        		echo "<input type = 'submit' value = 'Go Back' />";
+        		echo "</form>";
 		}
 	} else {
 			echo 'Update Failure: Critical Error';
@@ -686,35 +945,48 @@
    } else if(isset($_POST['sId'])) {
 	$id = $_POST['sId'];
 	$newId = $_POST['newId'];
-	echo "<script>alert('$id')</script>";
 	$query = "select * from Students where id = '$id' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Student Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Students set id = '$newId' where id = '$id' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Student does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
 	}
-   } else if(isset($_POST['volunteer'])) {	
+   } else if(isset($_POST['volunteer'])) {
 	$hrs = $_POST['volunteer'];
 	$newhrs = $_POST['newHrs'];
 	$name = $_POST['studentName'];
-	echo "<script>alert('$hrs')</script>";
 	$query = "select * from Students where volunteer_hrs = '$hrs' and name = '$name' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Student Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Students set volunteer_hrs = '$newhrs' where volunteer_hrs = '$hrs' and name = '$name' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			echo 'Update Failure: Student does not exist!';
 		}
 	} else {
@@ -723,17 +995,24 @@
    } else if(isset($_POST['sEmail'])) {
 	$curr = $_POST['sEmail'];
 	$new = $_POST['newEmail'];
-	echo "<script>alert('$curr')</script>";
 	$query = "select * from Students where email = '$curr' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Student Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Students set email = '$new' where email = '$curr' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Student does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -742,17 +1021,23 @@
 	$curr = $_POST['stuOrg'];
 	$new = $_POST['newOrg'];
 	$name = $_POST['studentName'];
-	echo "<script>alert('$curr')</script>";
 	$query = "select * from Students where orgName = '$curr' and name = '$name' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Student Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Students set orgName = '$new' where orgName = '$curr' and name = '$name' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Student does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -764,17 +1049,22 @@
 	$curr = $_POST['eName'];
 	$new = $_POST['newName'];
 	$date = $_POST['eDate'];
-	echo "<script>alert('$curr')</script>";
 	$query = "select * from Events where name = '$curr' and date = '$date' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Event Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Events set name = '$new' where name = '$curr' and date = '$date' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Student does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -783,17 +1073,23 @@
 	$curr = $_POST['eDate'];
 	$new = $_POST['newDate'];
 	$name = $_POST['eName'];
- 	echo "<script>alert('$curr')</script>";
 	$query = "select * from Events where name = '$name' and date = '$curr' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists';
+			echo "<p>Updating Event Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Events set date = '$new' where name = '$curr' and date = '$curr' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -803,17 +1099,23 @@
 	$new = $_POST['newLoc'];
 	$name = $_POST['eName'];
 	$date = $_POST['eDate'];
- 	echo "<script>alert('$curr')</script>";
 	$query = "select * from Events where name = '$name' and location = '$curr' and date = '$date' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists';
+			echo "<p>Updating Event Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Events set location = '$new' where name = '$name' and location = '$curr' and date = '$date' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -823,17 +1125,23 @@
 	$new = $_POST['newTime'];
 	$name = $_POST['eName'];
 	$date = $_POST['eDate'];
- 	echo "<script>alert('$curr')</script>";
 	$query = "select * from Events where name = '$name' and time = '$time' and date = '$date' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists';
+			echo "<p>Updating Event Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Events set time = '$new' where name = '$name' and time = '$curr' and date = '$date' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -843,17 +1151,22 @@
    if(isset($_POST['orgName'])) {
 	$curr = $_POST['orgName'];
 	$new = $_POST['newOrg'];
-	echo "<script>alert('$curr')</script>";
 	$query = "select * from Organizations where name = '$curr'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -861,35 +1174,46 @@
    } else if(isset($_POST['colors'])) {	
 	$new = $_POST['newColors'];
 	$name = $_POST['orgName'];
-	echo "<script>alert('$new')</script>";
 	$query = "select * from Organizations where name = '$name'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Organizations set colors = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
 	}
-   } else if(isset($_POST['type'])) {	
+   } else if(isset($_POST['type'])) {
 	$name = $_POST['orgName'];
 	$new = $_POST['newType'];
-	echo "<script>alert('$new')</script>";
 	$query = "select * from Organizations where name = '$name'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set type = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -897,17 +1221,22 @@
    } else if(isset($_POST['quota'])) {	
 	$name = $_POST['orgName'];
 	$new = $_POST['newQuota'];
-	echo "<script>alert('$new')</script>";
 	$query = "select * from Organizations where name = '$name'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set quota = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -915,17 +1244,22 @@
    } else if(isset($_POST['dues'])) {
 	$name = $_POST['orgName'];
 	$new = $_POST['newDues'];
-	echo "<script>alert('$new')</script>";
 	$query = "select * from Organizations where name = '$name'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set dues = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -933,17 +1267,22 @@
    } else if(isset($_POST['members'])) {
 	$name = $_POST['orgName'];
 	$new = $_POST['newName'];
-	echo "<script>alert('$curr')</script>";
 	$query = "select * from Organizations where name = '$name'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -951,17 +1290,22 @@
    } else if(isset($_POST['motto'])) {
 	$name = $_POST['orgName'];
 	$new = $_POST['newMotto'];
-	echo "<script>alert('$new')</script>";
 	$query = "select * from Organizations where name = '$name'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set motto = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -974,11 +1318,17 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set advEmail = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -991,11 +1341,18 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Organizations set philName = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1008,11 +1365,18 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Organization Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Organizations set councilName = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Event does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1027,11 +1391,18 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Advisor Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Advisor set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Advisor does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1044,11 +1415,18 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Advisor Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Advisor set id = '$new' where id = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Advisor does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1061,11 +1439,17 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Advisor Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Advisor set dept = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Advisor does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1079,12 +1463,18 @@
 		$dat = mysqli_fetch_assoc($r);
 		echo $query;
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Advisor Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Advisor set email = '$new' where name = '$name'";
 			echo $query;
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Advisor does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1097,16 +1487,22 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Potential New Member Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update PNMs set id = '$new' where id = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: PNM does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
 	}
-   } else if(isset($_POST['pName'])) {	
+   } else if(isset($_POST['pName'])) {
 	$curr = $_POST['pName'];
 	$new = $_POST['newPName'];
 	$query = "select * from PNMs where name = '$curr'";
@@ -1114,11 +1510,17 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Potential New Member Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update PNMs set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: PNM does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1133,11 +1535,18 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Philanthropy Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
+
 			$query = "update Philanthropy set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Philanthropy does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1154,11 +1563,17 @@
 		$dat = mysqli_fetch_assoc($r);
 		echo $dat;
 		if(count($dat) != 0) {
-			echo 'Tuple exists!';
+			echo "<p>Updating Philanthropy Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Philanthropy set donations = '$new' where donations = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Philanthropy does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Error';
@@ -1174,11 +1589,17 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Council Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Councils set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Council does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Failure';
@@ -1188,19 +1609,23 @@
   if(isset($_POST['corpName'])) {
 	$curr = $_POST['corpName'];
 	$new = $_POST['newCorp'];
-	$option = $_POST['service'];
-	$newoption = $_POST['newService'];
 
 	$query = "select * from Corporation where name = '$curr'";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists!';
+			echo "<p>Updating Corp Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Corporation set name = '$new' where name = '$curr'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Council does not exist!';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Failure';
@@ -1215,16 +1640,22 @@
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
 		if(count($dat) != 0) {
-			echo 'Tuple Exists';
+			echo "<p>Updating Corp Information...</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 			$query = "update Corporation set service_type = '$new' where service_type = '$curr' and name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
-			echo 'Update Failure: Corporation does not exist';
+			echo "<p>Update Failed</p>";
+                        echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
+                        echo "<input type = 'submit' value = 'Go Back' />";
+                        echo "</form>";
 		}
 	} else {
 		echo 'Update Failure: Critical Failure';
 	}
    }
-?>		
+?>
 </body>
 </html> 
