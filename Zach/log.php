@@ -86,7 +86,7 @@
     	padding: 10px 8px;
     	width: 100%;
     	font-size: 16px;
-    	background: #c7c7c7;
+    	background: #d3d3d3;
     	border: none;
     	color: black;
     	border-radius: 4px;
@@ -94,7 +94,7 @@
     	transition: all 0.2s ease;
    }
    .input-parent input:hover {
-   	background: #808080;
+   	background: #c7c7c7;
    }
    .input-parent input:focus {
     	box-shadow: 0px 0px 0px 1px #0087ff;
@@ -165,7 +165,7 @@
     <h2>Login to your account</h2>
 
     <div class="input-parent">
-      <label for="username">Username or Email</label>
+      <label for="username">Email</label>
       <div class="tooltip">
          <input type="text" name="email" id="username" placeholder="Email" required = "required">
          <span class="tooltiptext">Emails can be from 0-60 characters in length and must end with @''.com</span>

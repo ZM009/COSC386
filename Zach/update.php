@@ -439,7 +439,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
  
    <form method="post">
 	Name of Volunteer: <input type="text" name="studentName">
-	Volunteer Hours: <input type="text" name="volunteer">
+<!--	Volunteer Hours: <input type="text" name="volunteer">  -->
 	Edited Hours: <input type="text" name="newHrs">
 	<input type="submit" value="Submit"/>
    </form>
@@ -853,7 +853,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
    <form method="post">
         <label for=table">Select an individual value to change:</label>
         <select name="advisors" id="table">
-	   <option value="advName">Name</option>
+	   <option value="advisorName">Name</option>
 	   <option value="advId">ID</option>
 	   <option value="dept">Department</option>
 	   <option value="advisorEmail">Email</option>
@@ -907,7 +907,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
 <?php } else if(strcmp($_POST['phils'], "donations") == 0) { ?>
    <form method="post">
 	Philanthropy: <input type="text" name="philName3">
-	Current Donations (USD): $<input type="text" name="donations">
+<!--	Current Donations (USD): $<input type="text" name="donations"> -->
 	Updated Donations (USD): $<input type="text" name="newDonations">
 	<input type="submit" value="Submit">
    </form>
@@ -920,7 +920,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
 <?php } else if(strcmp($_POST['corps'], "service") == 0) { ?>
    <form method="post">
 	Corp Name: <input type="text" name="corpName2">
-	Service Type: <input type="text" name="service">
+<!--	Service Type: <input type="text" name="service"> -->
 	Updated Service Type: <input type="text" name="newService">
 	<input type="submit" value="Submit">
 <?php } ?> 
@@ -978,7 +978,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
 	$hrs = $_POST['volunteer'];
 	$newhrs = $_POST['newHrs'];
 	$name = $_POST['studentName'];
-	$query = "select * from Students where volunteer_hrs = '$hrs' and name = '$name' limit 1";
+	$query = "select * from Students where and name = '$name' limit 1";
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
@@ -988,7 +988,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
                         echo "<input type = 'submit' value = 'Go Back' />";
                         echo "</form>";
 
-			$query = "update Students set volunteer_hrs = '$newhrs' where volunteer_hrs = '$hrs' and name = '$name' limit 1";
+			$query = "update Students set volunteer_hrs = '$newhrs' where name = '$name' limit 1";
 			$update = mysqli_query($connection, $query);
 		} else {
 			echo "<p>Update Failed</p>";
@@ -1391,8 +1391,8 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
 	}
    }
 
-   if(isset($_POST['advName'])) {
-	$curr = $_POST['advName'];
+   if(isset($_POST['advisorName'])) {
+	$curr = $_POST['advisorName'];
 	$new = $_POST['newAdv'];
 	$query = "select * from Advisor where name = '$curr'";
 	$r = mysqli_query($connection, $query);
@@ -1463,7 +1463,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
 		echo 'Update Failure: Critical Error';
 	}
    } else if(isset($_POST['advisorEmail'])) {
-	$name = $_POST['advName'];
+	$name = $_POST['advisorName'];
 	$new = $_POST['newAEmail'];
 	$query = "select * from Advisor where name = '$name'";
 	$r = mysqli_query($connection, $query);
@@ -1569,13 +1569,12 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
 	$r = mysqli_query($connection, $query);
 	if($r) {
 		$dat = mysqli_fetch_assoc($r);
-		echo $dat;
 		if(count($dat) != 0) {
 			echo "<p>Updating Philanthropy Information...</p>";
                         echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
                         echo "<input type = 'submit' value = 'Go Back' />";
                         echo "</form>";
-			$query = "update Philanthropy set donations = '$new' where donations = '$curr'";
+			$query = "update Philanthropy set donations = '$new' where name= '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
 			echo "<p>Update Failed</p>";
@@ -1652,7 +1651,7 @@ echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'
                         echo "<form action = 'https://lamp.salisbury.edu/~zmoore4/COSC386/Zach/edit.php'>";
                         echo "<input type = 'submit' value = 'Go Back' />";
                         echo "</form>";
-			$query = "update Corporation set service_type = '$new' where service_type = '$curr' and name = '$name'";
+			$query = "update Corporation set service_type = '$new' where name = '$name'";
 			$update = mysqli_query($connection, $query);
 		} else {
 			echo "<p>Update Failed</p>";
