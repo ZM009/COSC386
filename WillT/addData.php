@@ -279,12 +279,12 @@
                                                 print "Failed to insert";
                                         }
                                 }
-                                else{
-                                        if($result1)
-                                                print "Insertion Successful!";
-                                        else
-                                                print "Failed to Insert!";
-                                }
+                        }
+                        else{
+                                if($result1)
+                                        print "Insertion Successful!";
+                                else
+                                        print "Failed to Insert!";
                         }
                         mysqli_close($con);
                 ?>
