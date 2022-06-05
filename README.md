@@ -7,5 +7,3 @@
 ##### Will Townsend
 ##### Andrew Depace
 ##### Brad Bogaczyk
-
-### This is a private repo for now, but as everything is pulled and fully updated, it will be viewable to the public!
